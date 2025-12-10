@@ -1,0 +1,1277 @@
+:root {
+    --primary-color: #c63945;
+    /* Red-Pink - This overrides the #007bff from the second block */
+    --primary-light: #e05e6a;
+    --primary-dark: #a32a35;
+    --accent-color: #c63945;
+    --text-primary: #2d3436;
+    --text-secondary: #636e72;
+    --bg-body: #ffffff;
+    /* White background */
+    --bg-card: #f8f9fa;
+    /* Light gray for cards */
+    --bg-nav: #ffffff;
+    --border-color: #dfe6e9;
+    --success-color: #00b894;
+    --warning-color: #fdcb6e;
+    --danger-color: #d63031;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --nav-height: 70px;
+    
+    /* Integrated Variables */
+    --secondary-color: #6c757d;
+    --background-light: #f8f9fa; 
+    --text-dark: #343a40; 
+    --card-bg: #ffffff; 
+    --spacing-unit: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Outfit', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Merged fonts */
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding-bottom: calc(var(--nav-height) + 20px);
+    min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+.container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#appContainer {
+    width: 100%;
+    max-width: 900px; 
+    margin: 0 auto;
+}
+
+/* Login Screen */
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 30px;
+    color: var(--text-primary);
+}
+
+.login-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 auto 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.login-header h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.login-form {
+    background: white;
+    padding: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px; /* Larger padding from original file */
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-color);
+    background: var(--bg-card);
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+}
+
+.btn-login, .btn-primary {
+    /* Base styles for both */
+    width: 100%;
+    padding: 18px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.2s;
+}
+
+.btn-login {
+    box-shadow: 0 4px 15px rgba(198, 57, 69, 0.3);
+}
+
+.btn-primary {
+    /* Overrides for btn-primary */
+    width: auto;
+    padding: 10px 15px;
+    margin-top: 0;
+    box-shadow: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1rem; /* Adjusting font size back to 1rem for btn-primary */
+}
+
+.btn-login:active {
+    transform: scale(0.98);
+}
+.btn-primary:hover, .btn-add-course:hover {
+    background-color: var(--primary-dark);
+}
+
+
+.login-footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+.login-footer strong {
+    color: var(--primary-color);
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-info-text {
+    text-align: right;
+    display: none;
+}
+
+@media (min-width: 350px) {
+    .user-info-text {
+        display: block;
+    }
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.user-id {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.profile-details {
+    text-align: center;
+}
+
+.profile-avatar-large {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto 15px;
+}
+
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.profile-item {
+    background: var(--bg-card);
+    padding: 10px;
+    border-radius: var(--radius-sm);
+}
+
+.profile-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.profile-value {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 15px;
+    background: var(--bg-card);
+    color: var(--danger-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background: #ffebee;
+    border-color: #ffcdd2;
+}
+
+/* Cards & Sections */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 0;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.card:not(.accordion-card) {
+    padding: 20px;
+}
+
+.card:active {
+    transform: scale(0.99);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Dashboard Grid */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.action-card {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.action-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.action-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.action-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Segmented Control for Academics */
+.segmented-control {
+    display: flex;
+    background: var(--bg-card);
+    padding: 5px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+}
+
+.segment-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.segment-btn.active {
+    background: white;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tabs & Navigation */
+.tab-container {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab-button {
+    flex-grow: 1;
+    padding: 15px 10px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    transition: color 0.2s, border-bottom 0.2s;
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.tab-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tables (General) */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.data-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Grade Table */
+.grade-table-container {
+    overflow-x: auto;
+}
+
+.grade-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+.grade-table th, .grade-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.grade-table th {
+    background-color: var(--background-light);
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.grade-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* GPA Calculator */
+/* The main container for the rows */
+.calc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+
+/* Individual Row Layout (Desktop/Tablet) - CONSOLIDATED BLOCK */
+.calc-row {
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center;
+    gap: 10px; /* Spacing between columns */
+    padding: 15px;
+    background: var(--bg-card); /* Light background for the row container */
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    border-bottom: none; /* Removed dashed border from original, now uses card shadow/border */
+}
+
+/* Course Title Input */
+.calc-title-input {
+    flex: 3; /* Course title gets 3 times the space */
+    min-width: 150px; /* Ensures it has enough space */
+}
+.calc-row input[type="text"] {
+    flex-basis: 40%; /* Retaining specific input type styling */
+    min-width: 100px;
+}
+
+/* Credit and Score Inputs */
+.calc-credit-input,
+.calc-grade-input {
+    flex: 1; /* These inputs share space equally */
+    max-width: 80px; 
+    text-align: center;
+}
+.calc-row input[type="number"] {
+    width: 60px;
+    flex-grow: 0;
+}
+.calc-row .form-input {
+    flex-grow: 1;
+    min-width: 50px;
+}
+
+/* Grade Display (Letter Grade) */
+.calc-grade-display {
+    flex: 0 0 50px; /* Fixed width, no shrinking/growing */
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: bold;
+    background: var(--bg-body); 
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem; /* Inherited/Ensured from grade-display */
+}
+
+/* Remove Button */
+.calc-remove-btn {
+    flex-shrink: 0;
+    /* Overriding .btn-remove base styles for better calculator integration */
+    background: var(--danger-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px; 
+    font-weight: bold;
+    line-height: 1;
+    width: auto;
+    height: auto;
+}
+.btn-remove {
+    /* Base .btn-remove (used by calc-remove-btn for hover) */
+    background: var(--bg-card);
+    color: var(--danger-color);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.btn-add-course {
+    background: var(--bg-card);
+    color: var(--primary-color);
+    border: 1px dashed var(--primary-color);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* GPA Displays */
+.gpa-display-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.gpa-display {
+    text-align: center;
+    border-radius: 8px; /* From new block */
+    padding: 15px; /* From new block */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* From new block */
+    flex-basis: 48%; 
+    margin-bottom: 10px;
+    
+    /* Overrides from original first block */
+    background-color: var(--card-bg); /* Use card-bg */
+    color: var(--text-primary); /* Use text-primary */
+}
+
+.gpa-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--primary-color);
+}
+
+.gpa-label {
+    opacity: 0.9;
+    font-size: 1rem;
+    margin-top: 5px;
+    color: var(--text-secondary);
+}
+
+/* --- Bottom Navigation Style --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: var(--nav-height);
+    background-color: var(--bg-nav);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    padding-bottom: env(safe-area-inset-bottom);
+    border-top: 1px solid var(--border-color);
+}
+#refreshButton {
+    background: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+}
+#refreshButton:hover {
+    color: white;
+}
+
+.nav-item {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    gap: 4px;
+}
+
+/* Style for icons */
+.nav-icon {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+
+/* --- Sliding Indicator Effect --- */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out;
+}
+
+/* State for ACTIVE tab */
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+.nav-item.active::after {
+    transform: translateY(0);
+}
+
+/* Optional: Subtle hover effect */
+.nav-item:not(.active):hover {
+    color: var(--primary-light);
+}
+
+/* Spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.spinner-large {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--bg-card);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error Message */
+.error-message {
+    background: #ffebee;
+    color: var(--danger-color);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid #ffcdd2;
+    margin-top: 20px;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* =========================================================
+   ACCORDION & GPA STYLES (Mobile Compactness & SGPA Fix)
+   ========================================================= */
+.accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.2s;
+}
+
+.accordion-header:hover {
+    background-color: var(--bg-card);
+}
+
+.accordion-body {
+    padding: 0;
+}
+
+/* Align the Semester Header contents */
+.semester-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+/* Container to hold both SGPA and CGPA boxes */
+.gpa-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+/* Base style for any GPA box */
+.gpa-box {
+    text-align: center;
+    line-height: 1.2;
+    border-radius: 4px;
+    padding: 5px 8px;
+}
+
+.gpa-box .gpa-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.gpa-box .gpa-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.expand-icon {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+    min-width: 16px;
+    text-align: center;
+}
+
+.small-icon {
+    font-size: 0.8rem;
+}
+
+/* ----------------------------------
+   COURSE (Inner Accordion) STYLES
+   ---------------------------------- */
+.course-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.semester-card .accordion-body > .course-item:last-child {
+    border-bottom: none;
+}
+
+.course-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+.course-header:hover {
+    background-color: var(--bg-card);
+}
+
+.course-info {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.course-code {
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: block;
+    line-height: 1.2;
+}
+
+.course-name {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    display: block;
+    line-height: 1.2;
+}
+
+.course-meta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.meta-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.meta-value {
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.grade-item .meta-value {
+    font-size: 1.05rem;
+}
+
+/* ----------------------------------
+   INNER DETAIL TABLE STYLES (Mobile Optimization)
+   ---------------------------------- */
+.course-details {
+    padding: 10px 15px;
+    background-color: var(--bg-card);
+}
+
+.details-table {
+    width: 100%;
+    border-spacing: 0;
+    font-size: 0.85rem;
+}
+
+.details-table th, .details-table td {
+    padding: 8px 5px;
+    text-align: center;
+    border-bottom: none;
+}
+
+.details-table thead th {
+    background-color: transparent;
+    border-bottom: 1px dashed var(--border-color);
+    font-size: 0.75rem;
+}
+
+/* Exempted Course Table */
+.data-table.exempted-table {
+    font-size: 1rem;
+}
+.data-table.exempted-table th, .data-table.exempted-table td {
+    padding: 12px 15px;
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE (Max width 600px)
+   ========================================================= */
+@media screen and (max-width: 600px) {
+    
+    body {
+        padding: 20px 10px; 
+    }
+    
+    /* GPA Displays on small screens */
+    .gpa-display {
+        flex-basis: 100%;
+    }
+    
+    /* Global table setting for vertical stacking */
+    .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Hide header row on exempted courses */
+    .data-table.exempted-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .data-table.exempted-table tr {
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .data-table.exempted-table td {
+        border: none;
+        position: relative;
+        padding: 10px 15px;
+        padding-left: 40% !important; 
+        text-align: right !important;
+        border-bottom: 1px dashed var(--border-color);
+    }
+    
+    .data-table.exempted-table td:last-child {
+        border-bottom: none;
+    }
+
+    .data-table.exempted-table td[data-label]:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 35%;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-secondary);
+        white-space: nowrap;
+    }
+
+
+    /* Detail Table Fixes (R1-R5, Total) */
+    .details-table thead th {
+        display: none;
+    }
+
+    .details-table tr {
+        display: flex; 
+        flex-wrap: wrap;
+        background-color: transparent;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+    
+    .details-table td {
+        border: none;
+        padding: 6px 10px;
+        position: relative;
+        text-align: left !important;
+        width: 33.33%; 
+        font-size: 0.85rem;
+    }
+    
+    /* Re-introduce labels for R1-R5 */
+    .details-table td[data-label]:before {
+        content: attr(data-label) ": ";
+        position: static;
+        width: auto;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-secondary);
+        white-space: nowrap;
+        font-size: 0.75rem;
+        display: inline-block;
+        margin-right: 5px;
+    }
+    
+    /* Total Score Standout */
+    .details-table .total-col {
+        width: 50%;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        background-color: var(--bg-body); 
+        margin-top: 5px;
+        border-radius: var(--radius-sm);
+        padding: 8px 10px;
+    }
+    .calc-row {
+        flex-wrap: wrap; 
+        padding: 12px;
+        gap: 8px; 
+    }
+
+    /* Course Title takes full width on the first line */
+    .calc-title-input {
+        flex: 1 1 100%;
+        margin-bottom: 5px;
+        /* Add space for the delete button */
+        padding-right: 40px; 
+    }
+
+    /* Credit, Score, and Grade Display share the second line equally */
+    .calc-credit-input,
+    .calc-grade-input,
+    .calc-grade-display {
+        flex: 1 1 0; /* They share the remaining space */
+        max-width: none; 
+        min-width: 50px; /* Ensures a minimum size */
+    }
+    
+    /* Position the remove button absolutely on the top right */
+    .calc-remove-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        font-size: 1rem;
+    }
+}
+
+/* =========================================
+    GPA CALCULATOR: GRID LAYOUT STYLES
+    (Based on user's desired design)
+========================================= */
+
+/* Overrides the default styles for the calculator section */
+.calc-container {
+    display: flex; /* Kept flex, but rows inside will be grid */
+    flex-direction: column;
+    gap: 0; /* Important: remove gap between rows since the row has border-bottom */
+}
+
+.table {
+    width: 100%;
+    padding: 0 15px; /* Add horizontal padding to the table content */
+    margin-bottom: 10px;
+}
+
+/* 1. Reset Button Style */
+.calc-reset-btn {
+    background: var(--danger-color); /* Use your existing red variable */
+    color: var(--bg-body); /* Use your white variable */
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+/* 2. Main Grid Layout for Rows */
+.row {
+    display: grid;
+    /* Defines the column widths: Title(3), CrHr(1), Score(1.5), Grade(1), Act(0.7) */
+    grid-template-columns: 3fr 1fr 1.5fr 1fr 0.7fr; 
+    gap: 6px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color); /* Light border line */
+    align-items: center;
+    font-size: 14px;
+}
+
+.row.header-row {
+    font-weight: bold;
+    border-bottom: 2px solid var(--border-color); /* Thicker border for header */
+    padding-bottom: 8px; /* Slightly less padding to visually separate */
+}
+
+/* Course title input/display */
+.title-input {
+    /* Ensure the input takes up the space in the grid cell */
+    width: 100%; 
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding/border in the element's total width/height */
+}
+
+/* Credit and Score inputs */
+.credit-input, .score-input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.grade {
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    /* Optional: Add a subtle background to the grade display */
+    background: var(--bg-body); 
+    padding: 5px 0;
+    border-radius: 4px;
+}
+
+/* Remove button display */
+.action-btn {
+    color: var(--danger-color);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}

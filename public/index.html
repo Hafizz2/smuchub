@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SMU HUB</title>
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-content">
+            <div class="login-header">
+                <div class="login-log">
+                    <img src="images/logo.png" alt="logo" height="100">
+                </div>
+                <h1>SMU HUB</h1>
+                <p>Access your academic world</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Student ID</label>
+                    <input type="text" id="username" class="form-input" placeholder="e.g. UGR/1234/12" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn-login">
+                    <span id="loginBtnText">Sign In</span>
+                    <span id="loginSpinner" class="spinner hidden"></span>
+                </button>
+            </form>
+            <div id="loginError" class="error-message hidden"></div>
+        </div>
+        <div class="login-footer">
+            <p>Developed by <strong>Hafiz</strong></p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="hidden">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="app-title">
+                
+                <img id="pageTitle" src="images/logo.png" alt="logo" height="40">
+                <!-- Inside the <header> tag -->
+
+
+            </div>
+            <div class="user-profile" onclick="toggleProfileModal()">
+                <div class="user-info-text">
+                    <div id="headerUserName" class="user-name">Welcome</div>
+                    <div id="headerUserId" class="user-id">ID: ---</div>
+                </div>
+                <div class="user-avatar">
+                    <span id="userInitials">ST</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Modal -->
+        <div id="profileModal" class="modal hidden">
+            <div class="modal-content fade-in">
+                <div class="modal-header">
+                    <h3>Student Profile</h3>
+                    <button class="btn-close" onclick="toggleProfileModal()">×</button>
+                </div>
+                <div class="profile-details">
+                    <div class="profile-avatar-large">
+                        <span id="modalInitials">ST</span>
+                    </div>
+                    <h2 id="modalName">Student Name</h2>
+                    <p id="modalId">ID: ---</p>
+
+                    <div class="profile-info-grid" id="profileInfoGrid">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <button class="btn-logout" onclick="handleLogout()">
+                        <span>🚪</span> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <main class="container" style="padding-bottom: 100px;">
+
+            <!-- Home Tab -->
+            <div id="homeTab" class="tab-content fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Academic Status</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Current GPA</div>
+                            <div id="homeGPA" style="font-size: 2.5rem; font-weight: 700; color: var(--primary-color);">
+                                ---</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Status</div>
+                            <div id="homeStatus" style="color: var(--success-color); font-weight: 600;">---</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 15px;">Quick Actions</h3>
+                <div class="quick-actions">
+                    <div class="action-card" onclick="switchTab('academics')">
+                        <span class="action-icon"> <i class="nav-icon fas fa-chart-bar"></i></span>
+                        <span class="action-label">My Grades</span>
+                    </div>
+                    <div class="action-card" onclick="switchTab('handbook')">
+                        <span class="action-icon"><i class="nav-icon fas fa-book"></i></span>
+                        <span class="action-label">Handbook</span>
+                    </div>
+                    <div class="action-card" onclick="switchTab('calculator')">
+                        <span class="action-icon"> <i class="nav-icon fas fa-calculator"></i></span>
+                        <span class="action-label">GPA Calc</span>
+                    </div>
+                    <div class="action-card" onclick="switchTab('ebooks')">
+                        <span class="action-icon">
+                            <i class="nav-icon fas fa-book"></i> </span>
+                        <span class="action-label">E-Library</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academics Tab (Grades, Deficiency, Breakdown) -->
+            <div id="academicsTab" class="tab-content hidden fade-in">
+                <button id="refreshButton" class="btn-icon hidden" onclick="fetchGrades(true)">
+                    <span id="refreshBtnText">Refresh Grade</span>
+                    <i id="refreshIcon" class="fa fa-refresh"></i>
+                    <div id="refreshSpinner" class="spinner-small hidden"></div>
+                </button>
+                <div id="toast" class="toast"></div>
+                <div class="segmented-control">
+                    <button class="segment-btn active" onclick="switchAcademicView('grades')">Grades</button>
+                    <button class="segment-btn" onclick="switchAcademicView('deficiency')">Deficiency</button>
+                </div>
+
+                <!-- Grades View -->
+                <div id="gradesView" class="academic-view">
+                    <div id="gradesContent">
+                        <div class="spinner-large"></div>
+                    </div>
+                </div>
+
+                <!-- Deficiency View -->
+                <div id="deficiencyView" class="academic-view hidden">
+                    <div id="deficiencyContent">
+                        <div class="spinner-large"></div>
+                    </div>
+                </div>
+
+            
+            </div>
+
+            <!-- Handbook Tab -->
+            <div id="handbookTab" class="tab-content hidden fade-in">
+                <div class="handbook-list">
+                    <div class="handbook-item">
+                        <div class="handbook-icon">📜</div>
+                        <div>
+                            <div style="font-weight: 600;">Rules & Regulations</div>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">Code of conduct and academic
+                                policies</div>
+                        </div>
+                    </div>
+                    <div class="handbook-item">
+                        <div class="handbook-icon">📅</div>
+                        <div>
+                            <div style="font-weight: 600;">Academic Calendar</div>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">Important dates and deadlines
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculator Tab -->
+            <div id="calculatorTab" class="tab-content hidden fade-in">
+                <div class="gpa-display-container">
+                <div style="display: flex; justify-content: space-around; width: 100%; margin-bottom: 20px;">
+                    <div class="gpa-display">
+                        <div id="calcSGPA" class="gpa-value">0.00</div>
+                        <div class="gpa-label">Projected SGPA</div>
+                    </div>
+                    <div class="gpa-display">
+                        <div id="calcCGPA" class="gpa-value">0.00</div>
+                        <div class="gpa-label">Projected CGPA</div>
+                    </div>
+                </div>
+            
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Projected Courses</span>
+                        <button class="btn-remove calc-reset-btn" onclick="resetCalculator()">Reset</button>
+                    </div>
+                    
+                    <div class="table">
+                
+                        <div class="row header-row">
+                            <div>Title</div>
+                            <div>CrHr</div>
+                            <div>Score</div>
+                            <div>Grade</div>
+                            <div>Act</div>
+                        </div>
+                
+                        <div id="calcCourses" class="calc-container">
+                            </div>
+                    </div>
+                
+                    <button class="btn-add-course" onclick="addCalcCourse()">+ Add Custom Course</button>
+            </div>
+
+            <!-- Ebooks Tab -->
+            <div id="ebooksTab" class="tab-content hidden fade-in">
+                <div class="ebook-grid">
+                    <div class="ebook-card">
+                        <div class="ebook-cover">📘</div>
+                        <div class="ebook-info">
+                            <div class="ebook-title">Introduction to Computer Science</div>
+                            <button class="nav-item"
+                                style="width: auto; height: auto; padding: 5px 10px; background: var(--bg-body); border-radius: 20px; font-size: 0.7rem;">Read</button>
+                        </div>
+                    </div>
+                    <!-- More mock ebooks -->
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="switchTab('home')" data-tab="home">
+                <i class="nav-icon fas fa-house"></i> 
+                <span>Home</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('academics')" data-tab="academics">
+                <i class="nav-icon fas fa-chart-bar"></i>
+                <span>Academics</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('calculator')" data-tab="calculator">
+                <i class="nav-icon fas fa-calculator"></i>
+                <span>Calc</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('handbook')" data-tab="handbook">
+                <i class="nav-icon fas fa-book"></i>
+                <span>Handbook</span>
+            </button>
+        </nav>
+
+        <!-- Just before the closing </body> tag -->
+
+    <script src="app.js"></script>
+</body>
+
+</html>

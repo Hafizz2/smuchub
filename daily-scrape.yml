@@ -1,0 +1,11 @@
+name: daily-scrape
+on:
+  schedule:
+    - cron: '0 3 * * *' # UTC 03:00 = Addis Ababa 06:00 (UTC+3). Adjust if DST changes.
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call scrape endpoint
+        run: |
+          curl -s -S -X POST "https://your-vercel-domain.vercel.app/api/scrape_all" -H "x-scrape-secret: ${{ secrets.SCRAPE_ALL_SECRET }}" -H "Content-Type: application/json" -d '{}'
